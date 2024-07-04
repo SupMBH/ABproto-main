@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Argent Bank API
+  description: API pour gérer les transactions des utilisateurs d'Argent Bank
+  version: 1.0.0
+paths:
+  /api/v1/transactions/monthly:
+    get:
+      summary: Visualisation des transactions du mois courant
+      parameters:
+        - in: query
+          name: accountId
+          schema:
+            type: string
+          required: true
+          description: ID du compte
+      responses:
+        '200':
+          description: Liste des transactions
+        '404':
+          description: Compte non trouvé
+        '500':
+          description: Erreur interne du serveur
+
+  /api/v1/transactions/{transactionId}:
+    get:
+      summary: Détails d'une transaction
+      parameters:
+        - in: path
+          name: transactionId
+          schema:
+            type: string
+          required: true
+          description: ID de la transaction
+      responses:
+        '200':
+          description: Détails de la transaction
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur interne du serveur
+
+    put:
+      summary: Modification d'une transaction
+      parameters:
+        - in: path
+          name: transactionId
+          schema:
+            type: string
+          required: true
+          description: ID de la transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                type:
+                  type: string
+                date:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Transaction modifiée
+        '404':
+          description: Transaction non trouvée
+        '400':
+          description: Requête invalide
+        '500':
+          description: Erreur interne du serveur
+
+    delete:
+      summary: Suppression d'une transaction
+      parameters:
+        - in: path
+          name: transactionId
+          schema:
+            type: string
+          required: true
+          description: ID de la transaction
+      responses:
+        '200':
+          description: Transaction supprimée
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur interne du serveur
+
+  /api/v1/transactions:
+    post:
+      summary: Ajout d'une transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                amount:
+                  type: number
+                type:
+                  type: string
+                date:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Transaction créée
+        '400':
+          description: Requête invalide
+        '500':
+          description: Erreur interne du serveur

@@ -352,7 +352,7 @@ color: #fff;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
     margin-bottom: 20px;
     max-width: 800px;
     margin-left: auto;
@@ -373,6 +373,22 @@ color: #fff;
 .account-amount-description {
     font-size: 1em;
     color: #666;
+}
+
+.transaction-table-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.transaction-table-wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .transaction-table {
@@ -408,6 +424,11 @@ color: #fff;
     display: inline-block;
     transition: transform 0.3s ease;
     margin-right: 10px;
+    cursor: pointer;
+}
+
+.transaction-table .chevron:hover {
+    cursor: pointer;
 }
 
 .transaction-table .chevron.open {
@@ -430,8 +451,4 @@ color: #fff;
     margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-}
-
-.transaction-table .chevron:hover {
-    cursor: pointer;
 }

@@ -29,21 +29,25 @@ const Transactions = () => {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
             </section>
-            <table className="transaction-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Amount</th>
-                        <th>Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {transactions.map((transaction, index) => (
-                        <TransactionRow key={index} transaction={transaction} />
-                    ))}
-                </tbody>
-            </table>
+            <div className="transaction-table-container">
+                <div className="transaction-table-wrapper">
+                    <table className="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {transactions.map((transaction, index) => (
+                                <TransactionRow key={index} transaction={transaction} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     );
 };

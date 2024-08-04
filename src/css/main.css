@@ -342,3 +342,27 @@ color: #fff;
     width: 200px;
 }
 }
+
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.transaction-table th,
+.transaction-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: #fff;
+}
+
+.transaction-table th {
+    background-color: #333;
+    color: white;
+}
+
+.transaction-table tr:nth-child(even) {
+    background-color: #3a3a3a;
+}

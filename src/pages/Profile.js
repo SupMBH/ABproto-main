@@ -1,36 +1,41 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ProfileHeader from '../components/ProfileHeader';
 import { useGetProfileMutation } from '../_redux/profileApiSlice';
 import { setProfile } from '../_redux/profileSlice';
 
 const Profile = () => {
-
-    const [profile, { isLoading }] = useGetProfileMutation()
-    const dispatch = useDispatch()
+    const [profile, { isLoading }] = useGetProfileMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await profile().unwrap()
+            const data = await profile().unwrap();
 
             if (data) {
                 const userData = {
-                firstName: data.body.firstName,
-                lastName: data.body.lastName,
-                }
-                dispatch(setProfile({ ...userData, userData }))
+                    firstName: data.body.firstName,
+                    lastName: data.body.lastName,
+                };
+                dispatch(setProfile({ ...userData, userData }));
             }
-        }
+        };
 
-        fetchData()
-    }, [])
+        fetchData();
+    }, []);
+
+    const handleViewTransactions = () => {
+        navigate('/transactions');
+    };
 
     const content = isLoading ? (
         <h1>Loading...</h1>
     ) : (
         <>
             <main className="main bg-dark profile">
-                <ProfileHeader/>
+                <ProfileHeader />
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">
                     <div className="account-content-wrapper">
@@ -39,7 +44,7 @@ const Profile = () => {
                         <p className="account-amount-description">Available Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                        <button className="transaction-button" onClick={handleViewTransactions}>View transactions</button>
                     </div>
                 </section>
                 <section className="account">
@@ -49,7 +54,7 @@ const Profile = () => {
                         <p className="account-amount-description">Available Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                        <button className="transaction-button" onClick={handleViewTransactions}>View transactions</button>
                     </div>
                 </section>
                 <section className="account">
@@ -59,14 +64,14 @@ const Profile = () => {
                         <p className="account-amount-description">Current Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button">View transactions</button>
+                        <button className="transaction-button" onClick={handleViewTransactions}>View transactions</button>
                     </div>
                 </section>
             </main>
         </>
-    )
+    );
 
-    return content
+    return content;
 };
 
 export default Profile;

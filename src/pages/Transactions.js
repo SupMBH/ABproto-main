@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import TransactionRow from '../components/TransactionRow';
 
 const Transactions = () => {
     const token = useSelector((state) => state.auth.token);
+    const location = useLocation();
+    const { accountName, accountAmount } = location.state || { accountName: 'Argent Bank Checking (x8349)', accountAmount: '$2,082.79' };
 
     const transactions = [
         { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$5.00', balance: '$2,082.79', category: 'Food', notes: '' },
@@ -24,8 +26,8 @@ const Transactions = () => {
             <h2 className="sr-only">Transactions</h2>
             <section className="account">
                 <div className="account-content-wrapper">
-                    <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-                    <p className="account-amount">$2,082.79</p>
+                    <h3 className="account-title">{accountName}</h3>
+                    <p className="account-amount">{accountAmount}</p>
                     <p className="account-amount-description">Available Balance</p>
                 </div>
             </section>
@@ -53,5 +55,6 @@ const Transactions = () => {
 };
 
 export default Transactions;
+
 
 

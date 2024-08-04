@@ -26,8 +26,8 @@ const Profile = () => {
         fetchData();
     }, []);
 
-    const handleViewTransactions = (account) => {
-        navigate('/transactions', { state: { account } });
+    const handleViewTransactions = (accountName, accountAmount) => {
+        navigate('/transactions', { state: { accountName, accountAmount } });
     };
 
     const content = isLoading ? (
@@ -44,7 +44,12 @@ const Profile = () => {
                         <p className="account-amount-description">Available Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button" onClick={() => handleViewTransactions('Checking')}>View transactions</button>
+                        <button 
+                            className="transaction-button" 
+                            onClick={() => handleViewTransactions('Argent Bank Checking (x8349)', '$2,082.79')}
+                        >
+                            View transactions
+                        </button>
                     </div>
                 </section>
                 <section className="account">
@@ -54,7 +59,12 @@ const Profile = () => {
                         <p className="account-amount-description">Available Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button" onClick={() => handleViewTransactions('Savings')}>View transactions</button>
+                        <button 
+                            className="transaction-button" 
+                            onClick={() => handleViewTransactions('Argent Bank Savings (x6712)', '$10,928.42')}
+                        >
+                            View transactions
+                        </button>
                     </div>
                 </section>
                 <section className="account">
@@ -64,7 +74,12 @@ const Profile = () => {
                         <p className="account-amount-description">Current Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button" onClick={() => handleViewTransactions('Credit Card')}>View transactions</button>
+                        <button 
+                            className="transaction-button" 
+                            onClick={() => handleViewTransactions('Argent Bank Credit Card (x8349)', '$184.30')}
+                        >
+                            View transactions
+                        </button>
                     </div>
                 </section>
             </main>
@@ -75,4 +90,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
 

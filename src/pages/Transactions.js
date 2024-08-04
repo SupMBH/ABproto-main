@@ -1,16 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import TransactionRow from '../components/TransactionRow';
 
 const Transactions = () => {
     const token = useSelector((state) => state.auth.token);
+
+    const transactions = [
+        { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$5.00', balance: '$2,082.79', category: 'Food', notes: '' },
+        { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$10.00', balance: '$2,087.79', category: 'Food', notes: '' },
+        { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$20.00', balance: '$2,097.79', category: 'Food', notes: '' },
+        { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$30.00', balance: '$2,117.79', category: 'Food', notes: '' },
+        { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$40.00', balance: '$2,147.79', category: 'Food', notes: '' },
+        { date: 'June 20th, 2020', description: 'Golden Sun Bakery', amount: '$50.00', balance: '$2,187.79', category: 'Food', notes: '' }
+    ];
 
     if (!token) {
         return <Navigate to="/login" />;
     }
 
     return (
-        <main className="main bg-dark">
+        <main className="main bg-light">
             <h2 className="sr-only">Transactions</h2>
             <section className="account">
                 <div className="account-content-wrapper">
@@ -29,42 +39,9 @@ const Transactions = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>June 20th, 2020</td>
-                        <td>Golden Sun Bakery</td>
-                        <td>$5.00</td>
-                        <td>$2,082.79</td>
-                    </tr>
-                    <tr>
-                        <td>June 20th, 2020</td>
-                        <td>Golden Sun Bakery</td>
-                        <td>$10.00</td>
-                        <td>$2,087.79</td>
-                    </tr>
-                    <tr>
-                        <td>June 20th, 2020</td>
-                        <td>Golden Sun Bakery</td>
-                        <td>$20.00</td>
-                        <td>$2,097.79</td>
-                    </tr>
-                    <tr>
-                        <td>June 20th, 2020</td>
-                        <td>Golden Sun Bakery</td>
-                        <td>$30.00</td>
-                        <td>$2,117.79</td>
-                    </tr>
-                    <tr>
-                        <td>June 20th, 2020</td>
-                        <td>Golden Sun Bakery</td>
-                        <td>$40.00</td>
-                        <td>$2,147.79</td>
-                    </tr>
-                    <tr>
-                        <td>June 20th, 2020</td>
-                        <td>Golden Sun Bakery</td>
-                        <td>$50.00</td>
-                        <td>$2,187.79</td>
-                    </tr>
+                    {transactions.map((transaction, index) => (
+                        <TransactionRow key={index} transaction={transaction} />
+                    ))}
                 </tbody>
             </table>
         </main>
@@ -72,4 +49,5 @@ const Transactions = () => {
 };
 
 export default Transactions;
+
 

@@ -26,8 +26,8 @@ const Profile = () => {
         fetchData();
     }, []);
 
-    const handleViewTransactions = () => {
-        navigate('/transactions');
+    const handleViewTransactions = (account) => {
+        navigate('/transactions', { state: { account } });
     };
 
     const content = isLoading ? (
@@ -44,7 +44,7 @@ const Profile = () => {
                         <p className="account-amount-description">Available Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button" onClick={handleViewTransactions}>View transactions</button>
+                        <button className="transaction-button" onClick={() => handleViewTransactions('Checking')}>View transactions</button>
                     </div>
                 </section>
                 <section className="account">
@@ -54,7 +54,7 @@ const Profile = () => {
                         <p className="account-amount-description">Available Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button" onClick={handleViewTransactions}>View transactions</button>
+                        <button className="transaction-button" onClick={() => handleViewTransactions('Savings')}>View transactions</button>
                     </div>
                 </section>
                 <section className="account">
@@ -64,7 +64,7 @@ const Profile = () => {
                         <p className="account-amount-description">Current Balance</p>
                     </div>
                     <div className="account-content-wrapper cta">
-                        <button className="transaction-button" onClick={handleViewTransactions}>View transactions</button>
+                        <button className="transaction-button" onClick={() => handleViewTransactions('Credit Card')}>View transactions</button>
                     </div>
                 </section>
             </main>
@@ -75,3 +75,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

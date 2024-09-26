@@ -1,0 +1,1 @@
+Cette API doit etre Fork et lancée indépendamment NPM install, populate, et npn run dev:server ensuite (se referrer à son README)
